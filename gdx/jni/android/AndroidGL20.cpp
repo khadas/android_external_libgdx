@@ -695,7 +695,7 @@ JNIEXPORT void JNICALL Java_com_badlogic_gdx_backends_android_AndroidGL20_glDraw
 JNIEXPORT void JNICALL Java_com_badlogic_gdx_backends_android_AndroidGL20_glDrawElements__IIII
   (JNIEnv *, jobject, jint mode, jint count, jint type, jint indices)
 {
-	glDrawElements( mode, count, type, (const void*)indices );
+	glDrawElements( mode, count, type, (const void*)(uintptr_t)indices );
 }
 
 /*
@@ -2058,7 +2058,7 @@ JNIEXPORT void JNICALL Java_com_badlogic_gdx_backends_android_AndroidGL20_glVert
 JNIEXPORT void JNICALL Java_com_badlogic_gdx_backends_android_AndroidGL20_glVertexAttribPointer__IIIZII
   (JNIEnv *, jobject, jint indx, jint size, jint type, jboolean normalized, jint stride, jint ptr)
 {
-	glVertexAttribPointer( indx, size, type, normalized, stride, (const void*)ptr );
+	glVertexAttribPointer( indx, size, type, normalized, stride, (const void*)(uintptr_t)ptr );
 }
 
 /*
