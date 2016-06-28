@@ -4,7 +4,9 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := libgdx
 LOCAL_C_INCLUDES :=
 
-LOCAL_CFLAGS := -O2 -Wall
+# Ignore warnings until they are fixed upstream. See https://github.com/libgdx/libgdx/issues/4169
+LOCAL_CFLAGS := -O2 -Wall -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function \
+        -Wno-sign-compare -Wno-shift-negative-value -Wno-pointer-arith -Wno-invalid-noreturn
 LOCAL_LDLIBS := -lm -lGLESv2 -llog
 LOCAL_ARM_MODE  := arm
 LOCAL_SDK_VERSION := 23
