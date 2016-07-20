@@ -778,8 +778,11 @@ public class GLSurfaceViewAPI18 extends SurfaceView implements SurfaceHolder.Cal
         private int EGL_CONTEXT_CLIENT_VERSION = 0x3098;
 
         public EGLContext createContext(EGL10 egl, EGLDisplay display, EGLConfig config) {
+            final int EGL_CONTEXT_PRIORITY_LEVEL_IMG = 0x3100;
+            final int EGL_CONTEXT_PRIORITY_LOW_IMG = 0x3103;
             int[] attrib_list = {EGL_CONTEXT_CLIENT_VERSION, mEGLContextClientVersion,
-                    EGL10.EGL_NONE };
+                    GLSurfaceView20.EGL_CONTEXT_PRIORITY_LEVEL_IMG, GLSurfaceView20.EGL_CONTEXT_PRIORITY_LOW_IMG,
+                    EGL10.EGL_NONE};
 
             return egl.eglCreateContext(display, config, EGL10.EGL_NO_CONTEXT,
                     mEGLContextClientVersion != 0 ? attrib_list : null);

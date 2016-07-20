@@ -44,6 +44,9 @@ public class GLSurfaceView20 extends GLSurfaceView {
 	static String TAG = "GL2JNIView";
 	private static final boolean DEBUG = false;
 
+	final static int EGL_CONTEXT_PRIORITY_LEVEL_IMG = 0x3100;
+	final static int EGL_CONTEXT_PRIORITY_LOW_IMG = 0x3103;
+
 	final ResolutionStrategy resolutionStrategy;
 	static int targetGLESVersion;
 
@@ -140,7 +143,8 @@ public class GLSurfaceView20 extends GLSurfaceView {
 		public EGLContext createContext (EGL10 egl, EGLDisplay display, EGLConfig eglConfig) {
 			Log.w(TAG, "creating OpenGL ES " + GLSurfaceView20.targetGLESVersion + ".0 context");
 			checkEglError("Before eglCreateContext "+targetGLESVersion, egl);
-			int[] attrib_list = {EGL_CONTEXT_CLIENT_VERSION, GLSurfaceView20.targetGLESVersion, EGL10.EGL_NONE};
+			int[] attrib_list = {EGL_CONTEXT_CLIENT_VERSION, GLSurfaceView20.targetGLESVersion,
+					EGL_CONTEXT_PRIORITY_LEVEL_IMG, EGL_CONTEXT_PRIORITY_LOW_IMG, EGL10.EGL_NONE};
 			EGLContext context = egl.eglCreateContext(display, eglConfig, EGL10.EGL_NO_CONTEXT, attrib_list);
 			boolean success = checkEglError("After eglCreateContext "+targetGLESVersion, egl);
 
