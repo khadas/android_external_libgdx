@@ -136,6 +136,7 @@ public final class AndroidGraphicsLiveWallpaper extends AndroidGraphics {
 			// by jw: added synchronization, there was nothing before
 			while (resume) {
 				try {
+					requestRendering();
 					synch.wait();
 				} catch (InterruptedException ignored) {
 					Gdx.app.log("AndroidGraphics", "waiting for resume synchronization failed!");
