@@ -22,4 +22,7 @@ LOCAL_SRC_FILES := android/AndroidGL20.cpp\
        gdx2d/jpgd_c.cpp\
        memcpy_wrap.c
 
+LOCAL_CLANG:=true
+LOCAL_SANITIZE := unsigned-integer-overflow signed-integer-overflow
+
 include $(BUILD_SHARED_LIBRARY)
