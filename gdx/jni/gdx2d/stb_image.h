@@ -4460,7 +4460,7 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
                 return stbi__err("Bad x","Bad x");
             // initial guess for decoded data size to avoid unnecessary reallocs
             bpl = (s->img_x * depth + 7) / 8; // bytes per line, per component
-            if (bpl > (INT_MAX - s->img_y) / bpl / s->img_y)
+            if (bpl > (INT_MAX - s->img_y) / s->img_n / s->img_y)
                 return stbi__err("Integer Overflow","y incorrect");
             raw_len = bpl * s->img_y * s->img_n /* pixels */ + s->img_y /* filter mode per row */;
             z->expanded = (stbi_uc *) stbi_zlib_decode_malloc_guesssize_headerflag((char *) z->idata, ioff, raw_len, (int *) &raw_len, !is_iphone);
